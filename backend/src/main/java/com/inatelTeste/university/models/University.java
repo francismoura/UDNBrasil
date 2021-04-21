@@ -4,52 +4,50 @@ import com.inatelTeste.university.dtos.UniversityDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.RequestEntity;
 
-import java.io.Serializable;
-import java.lang.reflect.Field;
+import java.net.URI;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class University implements Serializable {
+public class University {
 
+    private String alpha_two_code;
     private String country;
-    private List<String> webPages;
+    private List<URI> web_pages;
     private List<String> domains;
     private String name;
-    private String state;
-    private String alphaTwoCode;
+    private String state_province;
 
     public University(UniversityBuilder builder) {
 
-        this.alphaTwoCode = builder.alphaTwoCode;
+        this.alpha_two_code = builder.alpha_two_code;
         this.country = builder.country;
-        this.webPages = builder.webPages;
+        this.web_pages = builder.web_pages;
         this.domains = builder.domains;
         this.name = builder.name;
-        this.state = builder.state;
+        this.state_province = builder.state_province;
 
     }
 
     public static class UniversityBuilder {
 
-        private final String alphaTwoCode;
+        private final String alpha_two_code;
         private final String country;
-        private final List<String> webPages;
+        private final List<URI> web_pages;
         private final List<String> domains;
         private final String name;
-        private final String state;
+        private final String state_province;
 
-        public UniversityBuilder(UniversityDTO universityDTO) { ;
+        public UniversityBuilder(UniversityDTO universityDTO) {
 
-            this.alphaTwoCode = universityDTO.getAlphaTwoCode();
+            this.alpha_two_code = universityDTO.getAlpha_two_code();
             this.country = universityDTO.getCountry();
-            this.webPages = universityDTO.getWebPages();
+            this.web_pages = universityDTO.getWeb_pages();
             this.domains = universityDTO.getDomains();
             this.name = universityDTO.getName();
-            this.state = universityDTO.getState();
+            this.state_province = universityDTO.getStateProvince();
 
         }
 

@@ -31,7 +31,7 @@ public class UniversityService implements IUniversityService {
                         });
         List<UniversityDTO> universityDTOS = rateResponse.getBody();
 
-        if (universityDTOS != null && universityDTOS.size() > 0) {
+        if (universityDTOS != null && !universityDTOS.isEmpty()) {
             universityDTOS.forEach(universityDTO -> {
                 universities.add(new University.UniversityBuilder(universityDTO).build());
             });

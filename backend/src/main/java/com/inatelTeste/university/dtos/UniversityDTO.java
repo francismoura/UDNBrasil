@@ -2,24 +2,33 @@ package com.inatelTeste.university.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.net.URI;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UniversityDTO {
 
-    private String alphaTwoCode;
+    private String alpha_two_code;
     private String country;
-    private List<String> webPages;
+    private List<URI> web_pages;
     private List<String> domains;
     private String name;
-    private String state;
+    private String state_province;
 
-    public String getAlphaTwoCode() {
-        return alphaTwoCode;
+    public String getStateProvince() {
+        return state_province;
     }
 
-    public void setAlphaTwoCode(String alphaTwoCode) {
-        this.alphaTwoCode = alphaTwoCode;
+    public void setStateProvince(String stateProvince) {
+        this.state_province = stateProvince;
+    }
+
+    public String getAlpha_two_code() {
+        return alpha_two_code;
+    }
+
+    public void setAlpha_two_code(String alpha_two_code) {
+        this.alpha_two_code = alpha_two_code;
     }
 
     public String getCountry() {
@@ -30,13 +39,14 @@ public class UniversityDTO {
         this.country = country;
     }
 
-    public List<String> getWebPages() {
-        return webPages;
+    public List<URI> getWeb_pages() {
+        return web_pages;
     }
 
-    public void setWebPages(List<String> webPages) {
-        this.webPages = webPages;
+    public void setWeb_pages(List<URI> web_pages) {
+        this.web_pages = web_pages;
     }
+
 
     public List<String> getDomains() {
         return domains;
@@ -52,14 +62,6 @@ public class UniversityDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
 }

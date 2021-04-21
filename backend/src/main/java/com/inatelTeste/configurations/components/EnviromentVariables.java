@@ -1,4 +1,4 @@
-package com.inatelteste.configurations.components;
+package com.inatelTeste.configurations.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,7 +17,7 @@ public final class EnviromentVariables {
     }
 
     public static void setEnvironment(Environment environment) {
-        com.inatelteste.configurations.components.EnviromentVariables.environment =  environment;
+        com.inatelTeste.configurations.components.EnviromentVariables.environment =  environment;
     }
 
     public static String baseUrl() {
