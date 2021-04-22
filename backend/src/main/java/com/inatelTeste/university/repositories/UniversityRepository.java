@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UniversityRepository extends MongoRepository<University, String> {
 
-
+    University findById(Integer id);
 
 }

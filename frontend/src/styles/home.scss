@@ -1,0 +1,21 @@
+.home {
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #258cd1;
+    flex-direction: column;
+
+    .div-home-btn {
+        height: 30%;
+    }
+
+    .btn {
+        width: 300px;
+        height: 300px;
+        color: #f5f5f5 !important;
+        font-size: 22px;
+    }
+}

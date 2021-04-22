@@ -28,4 +28,8 @@ public final class EnviromentVariables {
         return environment.getProperty("server.dev.frontend.baseUrl");
     }
 
+    public static String header_cors() {
+        return environment.getProperty("app.http.header.cors");
+    }
+
 }

@@ -14,11 +14,12 @@ import java.util.List;
 @Getter
 @Setter
 @Data
-@Document(collection = "University")
+@NoArgsConstructor
+@Document(collection = "university")
 public class University {
 
     @Id
-    private Integer id;
+    private int id;
     private String alpha_two_code;
     private String country;
     private String name;

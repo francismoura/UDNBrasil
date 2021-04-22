@@ -1,17 +1,20 @@
 import '../styles/university.scss';
-import UniversityService from '../services/universityService'
-import React from 'react'
 import Navbar from '../components/NavBar'
+import React from 'react'
 import ListingGrid from '../components/ListingGrid'
+// import { Provider } from 'react-redux'
+// import store from '../store/'
+// import axios from 'axios'
+import UniversityExternalService from '../services/universityExternalService'
 
-class University extends React.Component {
+class UniversityExternal extends React.Component {
 
     state = {
         universidades: []
     }
 
     async componentDidMount() {
-        const result =  await UniversityService.listar()
+        const result =  await UniversityExternalService.listar()
         this.setState( { universidades: result.data })
         console.log('result', result.data)
     }
@@ -28,4 +31,4 @@ class University extends React.Component {
 
 }
 
-export default University;
+export default UniversityExternal;

@@ -13,12 +13,13 @@ import java.net.URI;
 @Getter
 @Setter
 @Data
-@Document(collection = "WebPage")
+@NoArgsConstructor
+@Document(collection = "webpage")
 public class WebPage {
 
     @Id
-    private Integer id;
-    private URI uri;
+    private int id;
+    private String uri;
 
     public WebPage(WebPage.WebPageBuilder builder) {
         this.uri = builder.uri;
@@ -26,7 +27,7 @@ public class WebPage {
 
     public static class WebPageBuilder {
 
-        private final URI uri;
+        private final String uri;
 
         public WebPageBuilder(WebPageDTO webPageDTO) {
             this.uri = webPageDTO.getUri();

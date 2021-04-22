@@ -3,8 +3,15 @@ import React from 'react'
 // import { useSelector } from 'react-redux'
 
 
-function ListingGrid(props) {
+class ListingGrid extends React.Component {
 
+	constructor(props) {
+		super(props)
+		this.universidades = props.universities;
+		console.log(props);
+	}
+
+	render() {
 		return (
 			<div className="container mt-5">
 				<table className="table">
@@ -36,5 +43,7 @@ function ListingGrid(props) {
 			</div>
 		)
 	}
+
+}
 
 export default ListingGrid

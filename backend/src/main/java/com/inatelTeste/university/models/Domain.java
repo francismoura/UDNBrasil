@@ -11,11 +11,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Data
-@Document(collection = "Domain")
+@NoArgsConstructor
+@Document(collection = "domain")
 public class Domain {
 
     @Id
-    private Integer id;
+    private int id;
+
     private String domain;
 
     public Domain(Domain.DomainBuilder builder) {

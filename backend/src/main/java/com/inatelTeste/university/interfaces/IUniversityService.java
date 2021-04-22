@@ -7,13 +7,12 @@ import java.util.List;
 
 public interface IUniversityService {
 
-    List<University> list();
+    List<University> listar();
 
-    University create(UniversityDTO universityDTO);
+    University salvar(UniversityDTO universityDTO);
 
-    University update(UniversityDTO universityDTO);
+    University atualizar(UniversityDTO universityDTO);
 
-    University delete(UniversityDTO universityDTO);
-
+    University remover(UniversityDTO universityDTO);
     
 }

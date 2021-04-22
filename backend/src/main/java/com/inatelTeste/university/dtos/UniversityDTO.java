@@ -13,12 +13,15 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UniversityDTO {
 
+    private int id;
     private String alpha_two_code;
     private String country;
     private List<WebPage> web_pages;
     private List<Domain> domains;
     private String name;
     private String state_province;
+
+    public int getId() { return id; }
 
     public String getStateProvince() {
         return state_province;

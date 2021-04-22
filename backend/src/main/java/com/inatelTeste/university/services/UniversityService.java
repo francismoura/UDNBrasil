@@ -13,8 +13,6 @@ import java.util.List;
 @Service
 public class UniversityService implements IUniversityService {
 
-    private static final String UDM_API = "http://universities.hipolabs.com/search?country=brazil";
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -22,39 +20,35 @@ public class UniversityService implements IUniversityService {
     UniversityRepository universityRepository;
 
     @Override
-    public List<University> list() {
+    public List<University> listar() {
+        return universityRepository.findAll();
+    }
 
-//        List<University> universities = new ArrayList<>();
-//
-//        ResponseEntity<List<UniversityDTO>> rateResponse =
-//                restTemplate.exchange(UDM_API,
-//                        HttpMethod.GET, null, new ParameterizedTypeReference<>() {
-//                        });
-//        List<UniversityDTO> universityDTOS = rateResponse.getBody();
-//
-//        if (universityDTOS != null && !universityDTOS.isEmpty()) {
-//            universityDTOS.forEach(universityDTO -> {
-//                universities.add(new University.UniversityBuilder(universityDTO).build());
-//            });
-//        }
+    @Override
+    public University salvar(UniversityDTO universityDTO) {
 
-        return this.universityRepository.findAll();
+        University university = new University.UniversityBuilder(universityDTO).build();
+
+        universityRepository.save(university);
+
+        return  university;
 
     }
 
     @Override
-    public University create(UniversityDTO universityDTO) {
+    public University atualizar(UniversityDTO universityDTO) {
         return null;
     }
 
     @Override
-    public University update(UniversityDTO universityDTO) {
-        return null;
-    }
+    public University remover(UniversityDTO universityDTO) {
 
-    @Override
-    public University delete(UniversityDTO universityDTO) {
-        return null;
+        University university = universityRepository.findById(universityDTO.getId());
+
+        universityRepository.delete(university);
+
+        return university;
+
     }
 
 }
