@@ -1,7 +1,7 @@
 package com.inatelTeste.university.services;
 
 import com.inatelTeste.university.dtos.UniversityDTO;
-import com.inatelTeste.university.interfaces.UniversityService;
+import com.inatelTeste.university.interfaces.IUniversityService;
 import com.inatelTeste.university.models.University;
 import com.inatelTeste.university.repositories.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-public class UniversityServiceImpl implements UniversityService {
+public class UniversityService implements IUniversityService {
 
     private static final String UDM_API = "http://universities.hipolabs.com/search?country=brazil";
 

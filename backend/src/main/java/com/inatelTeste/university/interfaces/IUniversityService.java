@@ -5,7 +5,7 @@ import com.inatelTeste.university.models.University;
 
 import java.util.List;
 
-public interface UniversityService {
+public interface IUniversityService {
 
     List<University> list();
 

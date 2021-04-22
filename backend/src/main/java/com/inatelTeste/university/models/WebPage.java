@@ -1,6 +1,7 @@
 package com.inatelTeste.university.models;
 
 import com.inatelTeste.university.dtos.WebPageDTO;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,8 @@ import java.net.URI;
 
 @Getter
 @Setter
-@Document(collection = "webPage")
+@Data
+@Document(collection = "WebPage")
 public class WebPage {
 
     @Id

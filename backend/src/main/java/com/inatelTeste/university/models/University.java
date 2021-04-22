@@ -1,6 +1,7 @@
 package com.inatelTeste.university.models;
 
 import com.inatelTeste.university.dtos.UniversityDTO;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,8 @@ import java.util.List;
 
 @Getter
 @Setter
-@Document(collection = "university")
+@Data
+@Document(collection = "University")
 public class University {
 
     @Id
