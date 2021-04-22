@@ -1,4 +1,4 @@
-package com.inatelteste.configurations.utils;
+package com.inatelTeste.configurations.utils;
 
 import lombok.Getter;
 

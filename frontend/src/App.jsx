@@ -1,18 +1,15 @@
-import React from 'react';
 import './styles/app.scss';
+import React from 'react';
 import Routes from './routes';
 
-class App extends React.Component {
+function App() {
 
-	render() {
-	
-		return (
+	document.title = "Nomes e Dominios das Universidades Brasileiras"
 
-			<Routes />
+	return (
+		<Routes />
+	)
 
-		)
-	}
-	
 }
 
 export default App;

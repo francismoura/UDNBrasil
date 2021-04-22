@@ -1,17 +1,22 @@
 package com.inatelTeste.university.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.inatelTeste.university.models.Domain;
+import com.inatelTeste.university.models.WebPage;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.net.URI;
 import java.util.List;
 
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UniversityDTO {
 
     private String alpha_two_code;
     private String country;
-    private List<URI> web_pages;
-    private List<String> domains;
+    private List<WebPage> web_pages;
+    private List<Domain> domains;
     private String name;
     private String state_province;
 
@@ -39,20 +44,20 @@ public class UniversityDTO {
         this.country = country;
     }
 
-    public List<URI> getWeb_pages() {
+    public List<WebPage> getWeb_pages() {
         return web_pages;
     }
 
-    public void setWeb_pages(List<URI> web_pages) {
+    public void setWeb_pages(List<WebPage> web_pages) {
         this.web_pages = web_pages;
     }
 
 
-    public List<String> getDomains() {
+    public List<Domain> getDomains() {
         return domains;
     }
 
-    public void setDomains(List<String> domains) {
+    public void setDomains(List<Domain> domains) {
         this.domains = domains;
     }
 

@@ -1,12 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import University from './views/University';
 
 function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={University} />
+
+                <Route exact path="/">
+                    <Redirect to="/api/universidades" />
+                </Route>
+
+                <Route path="/api/universidades"  exact component={University} />
+
             </Switch>
         </BrowserRouter>
     );

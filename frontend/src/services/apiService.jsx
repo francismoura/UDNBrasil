@@ -1,16 +1,15 @@
 import axios from 'axios'
 import { loading } from '../utils/loading.jsx'
+import { NotificationManager } from 'react-notifications';
+
+const httpClient = axios.create({
+    baseURL: "http://localhost:8080/api/universidades",
+});
 
 let countRequest = 0;
 
 const ApiService = {
-
     async init() {
-
-        axios.create({
-            baseURL: "http://localhost:8080",
-        });
-
         await this.setHeader();
 
         axios.interceptors.request.use((config) => {
@@ -44,6 +43,7 @@ const ApiService = {
             return Promise.reject(error);
 
         });
+
     },
 
     async setHeader() {
@@ -53,11 +53,11 @@ const ApiService = {
     async get(resource, slug = '') {
 
         try {
-            return await axios.get(`${resource}/${slug}`);
+            return await httpClient.get(`${resource}/${slug}`);
         } catch (error) {
 
             const result = {
-                // message: this.genericErrorHandling(error)
+                message: this.genericErrorHandling(error)
             };
 
             if (result) {
@@ -75,7 +75,7 @@ const ApiService = {
         } catch (error) {
 
             const result = {
-                // message: this.genericErrorHandling(error)
+                message: this.genericErrorHandling(error)
             };
 
             return Promise.reject(result);
@@ -83,6 +83,58 @@ const ApiService = {
         }
 
     },
+
+    genericErrorHandling(error) {
+        let {
+            message
+        } = error;
+
+        if (error && error.response && error.response.status) {
+            switch (error.response.status) {
+                case 401:
+                    this.handling401(error.response.data);
+                    message = '';
+                    break;
+                case 404:
+                    message = error.response.data.message;
+                    break;
+                case 500:
+                    message = error.response.data.message;
+                    break;
+                default:
+                    message = error.response.data.message;
+                    break;
+            }
+        }
+
+        console.log('genericErrorHandling', error.response);
+
+        return message;
+    },
+
+    handlingWarning(error) {
+
+        let message = '';
+
+        if (error.response && error.response.data && error.response.data.message) {
+            try {
+                const msg = JSON.parse(error.response.data.message);
+                message = msg.message;
+            } catch (e) {
+                message = error.response.data.message;
+            }
+
+            NotificationManager.warning(message, 5000);
+        } else if (error.response && error.response.data && error.response.data.errors) {
+            error.response.data.errors.forEach(e => {
+                message = message + ',' + e;
+                NotificationManager.warning(e, 5000);
+            });
+        }
+
+        return message;
+    },
+
 
 }
 

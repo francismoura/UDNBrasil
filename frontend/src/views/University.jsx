@@ -1,33 +1,33 @@
 import '../styles/university.scss';
-import React from 'react'
 import Navbar from '../components/NavBar'
-import axios from 'axios'
-// import UniversityService from '../services/universityService'
+import React from 'react'
+import ListingGrid from '../components/ListingGrid'
+// import { Provider } from 'react-redux'
+// import store from '../store/'
+// import axios from 'axios'
+import UniversityService from '../services/universityService'
 
 class University extends React.Component {
 
     state = {
-        universities: {}
+        universidades: []
     }
 
-    componentDidMount() {
-
-        axios.get("http://localhost:8080/api/universities/list")
-        .then(result => {
-            this.setState({ universities: result.data });
-            console.log(this.state.universities);
-        });
-
+    async componentDidMount() {
+        const result =  await UniversityService.listar()
+        this.setState( { universidades: result.data })
+        console.log('result', result.data)
     }
 
     render() {
         return (
             <div>
                 <Navbar></Navbar>
-                <h1>Hello Word</h1>
+                <ListingGrid universities={this.state.universidades}/>
             </div>
-        );
+    );
     }
+
 
 }
 
