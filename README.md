@@ -71,6 +71,18 @@ Abaixo segue os comandos para instalar a versão estável recente do MongoDB:
 
 Qualquer erro durante a instalação, você pode consultar o manual para possível correção: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
+Acessar o  MongoDB
+
+`$ mongo`
+
+Criar um documento
+
+`$ use universities`
+
+Criar uma collection
+
+`$ db.createCollection('university')`
+
 
 ### **BACKEND SPRING BOOT**
 
@@ -100,7 +112,7 @@ Deixe executando!
 
 ### **FRONTEND REACT**
 
-Você vai precisar de uma versão atualizada do node. Nesse projeto foi utilizado a versão 14.16.0.
+Você vai precisar de uma versão atualizada do Node. Nesse projeto foi utilizado a versão 14.16.0.
 
 `$ sudo apt install nodejs`
 
