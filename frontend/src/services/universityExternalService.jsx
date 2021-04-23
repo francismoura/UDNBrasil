@@ -1,23 +1,20 @@
 import ApiService from './apiService';
 
-const UniversityService = {
-
-    iniciar: async () => ApiService.get('/iniciar'),
-
+const UniversityExternalService = {
 
     listar: async (documentosFiltro) => {
         if (documentosFiltro) {
-            return ApiService.post(`/listar/?
+            return ApiService.post(`/externa/listar/?
 						page=${documentosFiltro.pagina > 0 ? documentosFiltro.pagina : 0}
 						&size=${documentosFiltro.itemsPorPagina > 0 ? documentosFiltro.itemsPorPagina : 10}
 						&sort=${documentosFiltro.tipoOrdenacao ? documentosFiltro.tipoOrdenacao : 'nome,asc'}`,
                 documentosFiltro
             );
         } else {
-            return ApiService.get('/listar');
+            return ApiService.get('/externa/listar');
         }
     },
 
 };
 
-export default UniversityService
+export default UniversityExternalService

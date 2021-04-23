@@ -2,8 +2,8 @@ package com.inatelTeste.university.controllers;
 
 import com.inatelTeste.configurations.components.EnviromentVariables;
 import com.inatelTeste.university.dtos.UniversityDTO;
-import com.inatelTeste.university.interfaces.IUniversityService;
 import com.inatelTeste.university.models.University;
+import com.inatelTeste.university.services.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,28 +14,39 @@ import java.util.List;
 @RequestMapping(value = "/api/universidades")
 public class UniversityController {
 
-    private static final String HEADER_CORS = "Access-Control-Allow-Origin";
-
     @Autowired
-    IUniversityService IUniversityService;
+    UniversityService universityService;
 
-    @GetMapping(value = "/listar")
-    public ResponseEntity<List<University>> listar() {
+    @GetMapping(value="/iniciar")
+    public ResponseEntity<String> iniciar() {
 
-        List<University> universities = IUniversityService.list();
+        String teste = universityService.starter();
 
         return ResponseEntity.ok()
-                .header(HEADER_CORS, EnviromentVariables.baseUrlFrontend())
-                .body(universities);
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(teste);
 
     }
 
     @PostMapping(value = "/salvar")
     public ResponseEntity<University> salvar(@RequestBody UniversityDTO universityDTO) {
 
+        University university = universityService.salvar(universityDTO);
+
         return ResponseEntity.ok()
-                .header(HEADER_CORS, EnviromentVariables.baseUrlFrontend())
-                .body(IUniversityService.create(universityDTO));
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(university);
+
+    }
+
+    @GetMapping(value = "/listar")
+    public ResponseEntity<List<University>> listar() {
+
+        List<University> universities = universityService.listar();
+
+        return ResponseEntity.ok()
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(universities);
 
     }
 
@@ -43,8 +54,8 @@ public class UniversityController {
     public ResponseEntity<University> remover(@RequestBody UniversityDTO universityDTO) {
 
         return ResponseEntity.ok()
-                .header(HEADER_CORS, EnviromentVariables.baseUrlFrontend())
-                .body(IUniversityService.delete(universityDTO));
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(universityService.remover(universityDTO));
 
     }
 
@@ -52,8 +63,8 @@ public class UniversityController {
     public ResponseEntity<University> atualizar(@RequestBody UniversityDTO universityDTO) {
 
         return ResponseEntity.ok()
-                .header(HEADER_CORS, EnviromentVariables.baseUrlFrontend())
-                .body(IUniversityService.update(universityDTO));
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(universityService.atualizar(universityDTO));
 
     }
 
