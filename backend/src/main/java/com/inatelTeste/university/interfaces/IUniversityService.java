@@ -9,6 +9,8 @@ public interface IUniversityService {
 
     List<University> listar();
 
+    String starter();
+
     University salvar(UniversityDTO universityDTO);
 
     University atualizar(UniversityDTO universityDTO);

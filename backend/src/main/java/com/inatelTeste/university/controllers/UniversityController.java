@@ -11,13 +11,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/universidades/listar")
+@RequestMapping(value = "/api/universidades")
 public class UniversityController {
 
     @Autowired
     UniversityService universityService;
 
-    @RequestMapping(value = "/salvar")
+    @GetMapping(value="/iniciar")
+    public ResponseEntity<String> iniciar() {
+
+        String teste = universityService.starter();
+
+        return ResponseEntity.ok()
+                .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
+                .body(teste);
+
+    }
+
+    @PostMapping(value = "/salvar")
     public ResponseEntity<University> salvar(@RequestBody UniversityDTO universityDTO) {
 
         University university = universityService.salvar(universityDTO);
@@ -41,8 +52,6 @@ public class UniversityController {
 
     @PostMapping(value = "/remover")
     public ResponseEntity<University> remover(@RequestBody UniversityDTO universityDTO) {
-
-        University university = universityService.remover(universityDTO);
 
         return ResponseEntity.ok()
                 .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())

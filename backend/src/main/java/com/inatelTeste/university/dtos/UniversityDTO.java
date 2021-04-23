@@ -1,8 +1,6 @@
 package com.inatelTeste.university.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.inatelTeste.university.models.Domain;
-import com.inatelTeste.university.models.WebPage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,15 +11,13 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UniversityDTO {
 
-    private int id;
+    private String id;
     private String alpha_two_code;
     private String country;
-    private List<WebPage> web_pages;
-    private List<Domain> domains;
+    private List<String> web_pages;
+    private List<String> domains;
     private String name;
     private String state_province;
-
-    public int getId() { return id; }
 
     public String getStateProvince() {
         return state_province;
@@ -47,20 +43,19 @@ public class UniversityDTO {
         this.country = country;
     }
 
-    public List<WebPage> getWeb_pages() {
+    public List<String> getWeb_pages() {
         return web_pages;
     }
 
-    public void setWeb_pages(List<WebPage> web_pages) {
+    public void setWeb_pages(List<String> web_pages) {
         this.web_pages = web_pages;
     }
 
-
-    public List<Domain> getDomains() {
+    public List<String> getDomains() {
         return domains;
     }
 
-    public void setDomains(List<Domain> domains) {
+    public void setDomains(List<String> domains) {
         this.domains = domains;
     }
 
@@ -70,6 +65,22 @@ public class UniversityDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getState_province() {
+        return state_province;
+    }
+
+    public void setState_province(String state_province) {
+        this.state_province = state_province;
     }
 
 }

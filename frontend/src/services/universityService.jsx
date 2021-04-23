@@ -2,6 +2,9 @@ import ApiService from './apiService';
 
 const UniversityService = {
 
+    iniciar: async () => ApiService.get('/iniciar'),
+
+
     listar: async (documentosFiltro) => {
         if (documentosFiltro) {
             return ApiService.post(`/listar/?

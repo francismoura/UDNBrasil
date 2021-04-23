@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,19 +16,19 @@ import java.util.List;
 @Setter
 @Data
 @NoArgsConstructor
-@Document(collection = "university")
+@Document
 public class University {
 
     @Id
-    private int id;
+    @Indexed
+    private String id;
+
     private String alpha_two_code;
     private String country;
     private String name;
     private String state_province;
-    @DBRef
-    private List<WebPage> web_pages;
-    @DBRef
-    private List<Domain> domains;
+    private List<String> web_pages;
+    private List<String> domains;
 
     public University(UniversityBuilder builder) {
 
@@ -44,8 +45,8 @@ public class University {
 
         private final String alpha_two_code;
         private final String country;
-        private final List<WebPage> web_pages;
-        private final List<Domain> domains;
+        private final List<String> web_pages;
+        private final List<String> domains;
         private final String name;
         private final String state_province;
 

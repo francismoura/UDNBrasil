@@ -1,8 +1,6 @@
 package com.inatelTeste.university.controllers;
 
 import com.inatelTeste.configurations.components.EnviromentVariables;
-import com.inatelTeste.university.dtos.UniversityDTO;
-import com.inatelTeste.university.models.University;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

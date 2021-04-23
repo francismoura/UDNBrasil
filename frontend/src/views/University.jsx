@@ -11,20 +11,32 @@ class University extends React.Component {
     }
 
     async componentDidMount() {
+
         const result =  await UniversityService.listar()
         this.setState( { universidades: result.data })
-        console.log('result', result.data)
+
     }
 
     render() {
-        return (
-            <div>
-                <Navbar></Navbar>
-                <ListingGrid universities={this.state.universidades}/>
-            </div>
-    );
-    }
 
+        if (this.state.universidades.length > 0) {
+
+            return (
+
+                <div>
+
+                    <Navbar></Navbar>
+                    <ListingGrid universities={this.state.universidades}/>
+
+                </div>
+
+            );
+
+        }
+
+        return null;
+
+    }
 
 }
 
