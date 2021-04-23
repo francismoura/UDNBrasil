@@ -9,14 +9,16 @@ Este é um sistema simples para consulta de API com informações de universidad
 
 Siga as instruções.
 
+
 ### **JAVA**
 
 Verifique a versão do seu Java. Caso não tenha a versão 14, prossiga!
+
 `$ java --version`
 
 Baixe a versão do Java 14 direto no site da Oracle. Atenção! Não é OpenJDK. Fique a vontade para instalar conforme sua maneira. Porém, para prosseguir com as instrução abaixo, você deve baixar a versão binária 'Linux Compressed Archive'
 
-https://www.oracle.com/br/java/technologies/javase/jdk14-archive-downloads.html
+    https://www.oracle.com/br/java/technologies/javase/jdk14-archive-downloads.html
 
 Navegue até o diretório onde o download foi realizado e execute os comandos:
 
@@ -24,20 +26,29 @@ Navegue até o diretório onde o download foi realizado e execute os comandos:
 
 Mova o java para /usr/lib/jvm
 Caso o diretório abaixo não exista
+
 `$ sudo mkdir -p /usr/lib/jvm `
+
 `$ sudo mv ./jdk-14.0.2 /usr/lib/jvm/`
 
 Prossiga!
+
 `$ sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-14.0.2/bin/java" 1 `
+
 `$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-14.0.2/bin/javac" 1`
 
 Execute as permissões
+
 `$ sudo chmod a+x /usr/bin/java`
+
 `$ sudo chmod a+x /usr/bin/javac`
+
 `$ sudo chown -R root:root /usr/lib/jvm/jdk-14.0.2`
 
 Por último, selecione o Java 14 caso tenha outras versões instaladas
+
 `$ sudo update-alternatives --config java`
+
 `$ sudo update-alternatives --config javac`
 
 Verifique a versão do java novamente
