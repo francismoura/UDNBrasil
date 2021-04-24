@@ -12,7 +12,7 @@ Siga as instruções.
 
 ### **JAVA**
 
-Verifique a versão do seu Java. Caso não tenha a versão 14, prossiga!
+Verifique a versão do seu Java. Caso não tenha a versão 14, continue a instalação
 
 `$ java --version`
 
