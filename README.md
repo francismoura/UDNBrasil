@@ -24,10 +24,9 @@ Navegue até o diretório onde o download foi realizado e execute os comandos:
 
 `$ sudo tar -xfv jdk-14.0.2_linux-x64_bin.tar.gz`
 
-Mova o java para /usr/lib/jvm
-Caso o diretório abaixo não exista
+Mova o java para /usr/lib/jvm. 
 
-`$ sudo mkdir -p /usr/lib/jvm `
+`$ sudo mkdir -p /usr/lib/jvm` (Caso o diretório não exista)
 
 `$ sudo mv ./jdk-14.0.2 /usr/lib/jvm/`
 
@@ -57,7 +56,7 @@ Verifique a versão do java novamente
 
 ### **MongoDB**
 
-Abaixo segue os comandos para instalar a versão estável recente do MongoDB:
+Siga os comandos abaixo para instalar a versão estável mais recente do MongoDB:
 
 `$ wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -`
 
@@ -94,11 +93,11 @@ Instale o MAVEN
 
 `$ sudo apt install maven`
 
-Verifique se a instalação com o comando
+Verifique a instalação com o comando
 
 `$ mvn -version`
 
-Tudo ok? Agora siga até o diretóro do projeto "intal-teste", acesso a pasta /backend e prossiga
+Tudo ok? Agora siga até o diretóro do projeto e acesse a subpasta /backend
 
 Instale as dependências do Maven
 
