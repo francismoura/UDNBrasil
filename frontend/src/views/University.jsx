@@ -8,15 +8,18 @@ export default function University() {
 
 	const [universidades, setUniversidades] = useState([]);
 
-	useEffect( () => {
-
-		UniversityService.listar()
-		.then(result => {
+	const getUniversidades = async () => {
+		try {
+			const result = await UniversityService.listar();
 			setUniversidades(result.data);
-		})
+		} catch (error) {
+			console.log(error.message);
+		}
+	}
 
+	useEffect( () => {
+			getUniversidades()
 	}, [] );
-
 
 	return (
 

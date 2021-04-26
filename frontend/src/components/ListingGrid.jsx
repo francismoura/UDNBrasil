@@ -23,11 +23,13 @@ export default function ListingGrid(props) {
 							return (
 
 								<tr key={index}>
-									<th scope="row" universidade={universidade}>{universidade.name}</th>
-									<td universidade={universidade}>{universidade.alpha_two_code}</td>
-									<td universidade={universidade}>{universidade.web_pages}</td>
-									<td universidade={universidade}>{universidade.domains[0]}</td>
-									<td universidade={universidade}>{universidade.state_province ? universidade.state_province : '‒'}  </td>
+									<td universidade={ universidade  }>{universidade.name }</td>
+									<td universidade={ universidade  }>{universidade.alpha_two_code }</td>
+									<td universidade={ universidade }>
+										{ universidade.web_pages.length > 1 ? universidade.web_pages.map(uni => uni + " - ") : universidade.web_pages }
+									</td>
+									<td universidade={ universidade }>{ universidade.domains ? universidade.domains : '‒' }</td>
+									<td universidade={ universidade }>{universidade.state_province ? universidade.state_province : '‒' }</td>
 								</tr>
 
 							)
@@ -35,6 +37,8 @@ export default function ListingGrid(props) {
 						})
 					}
 				</tbody>
+				<tfoot>
+				</tfoot>
 			</table>
 		</div>
 	)
