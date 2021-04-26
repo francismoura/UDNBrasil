@@ -1,5 +1,6 @@
 import 'bootswatch/dist/flatly/bootstrap.css'
 
+
 function Navbar(props) {
 
     return (

@@ -1,13 +1,17 @@
 package com.inatelTeste.university.controllers;
 
 import com.inatelTeste.configurations.components.EnviromentVariables;
+import com.inatelTeste.configurations.utils.FiltroPesquisa;
 import com.inatelTeste.university.dtos.UniversityDTO;
 import com.inatelTeste.university.models.University;
 import com.inatelTeste.university.services.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -17,7 +21,7 @@ public class UniversityController {
     @Autowired
     UniversityService universityService;
 
-    @GetMapping(value="/iniciar")
+    @GetMapping(value = "/iniciar")
     public ResponseEntity<String> iniciar() {
 
         String teste = universityService.starter();
@@ -40,7 +44,7 @@ public class UniversityController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity<List<University>> listar() {
+    public ResponseEntity<List<University>> listar() throws Exception {
 
         List<University> universities = universityService.listar();
 
