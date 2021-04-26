@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IUniversityService {
 
-    List<University> listar();
+    List<University> listar() throws Exception;
 
     String starter();
 
@@ -16,5 +16,5 @@ public interface IUniversityService {
     University atualizar(UniversityDTO universityDTO);
 
     University remover(UniversityDTO universityDTO);
-    
+
 }

@@ -4,14 +4,13 @@ const UniversityService = {
 
     iniciar: async () => ApiService.get('/iniciar'),
 
-
-    listar: async (documentosFiltro) => {
-        if (documentosFiltro) {
+    listar: async (universidadeFiltro) => {
+        if (universidadeFiltro) {
             return ApiService.post(`/listar/?
-						page=${documentosFiltro.pagina > 0 ? documentosFiltro.pagina : 0}
-						&size=${documentosFiltro.itemsPorPagina > 0 ? documentosFiltro.itemsPorPagina : 10}
-						&sort=${documentosFiltro.tipoOrdenacao ? documentosFiltro.tipoOrdenacao : 'nome,asc'}`,
-                documentosFiltro
+						page=${universidadeFiltro.pagina > 0 ? universidadeFiltro.pagina : 0}
+						&size=${universidadeFiltro.itemsPorPagina > 0 ? universidadeFiltro.itemsPorPagina : 10}
+						&sort=${universidadeFiltro.tipoOrdenacao ? universidadeFiltro.tipoOrdenacao : 'nome,asc'}`,
+                universidadeFiltro
             );
         } else {
             return ApiService.get('/listar');

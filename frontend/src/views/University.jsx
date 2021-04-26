@@ -1,43 +1,31 @@
 import '../styles/university.scss';
 import UniversityService from '../services/universityService'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from '../components/NavBar'
 import ListingGrid from '../components/ListingGrid'
 
-class University extends React.Component {
+export default function University() {
 
-    state = {
-        universidades: []
-    }
+	const [universidades, setUniversidades] = useState([]);
 
-    async componentDidMount() {
+	useEffect( () => {
 
-        const result =  await UniversityService.listar()
-        this.setState( { universidades: result.data })
+		UniversityService.listar()
+		.then(result => {
+			setUniversidades(result.data);
+		})
 
-    }
+	}, [] );
 
-    render() {
 
-        if (this.state.universidades.length > 0) {
+	return (
 
-            return (
+		<div>
+			<Navbar></Navbar>
+			<ListingGrid>{ universidades }</ListingGrid>
+		</div>
 
-                <div>
+	);
 
-                    <Navbar></Navbar>
-                    <ListingGrid universities={this.state.universidades}/>
-
-                </div>
-
-            );
-
-        }
-
-        return null;
-
-    }
 
 }
-
-export default University;

@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface UniversityRepository extends MongoRepository<University, String> {
 
     Optional<University> findById(String id);
+
 }

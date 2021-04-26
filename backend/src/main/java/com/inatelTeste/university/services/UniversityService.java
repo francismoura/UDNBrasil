@@ -52,7 +52,7 @@ public class UniversityService implements IUniversityService {
     }
 
     @Override
-    public List<University> listar() {
+    public List<University> listar() throws Exception{
 
         return universityRepository.findAll();
 
@@ -65,7 +65,7 @@ public class UniversityService implements IUniversityService {
 
         universityRepository.save(university);
 
-        return  university;
+        return university;
 
     }
 
