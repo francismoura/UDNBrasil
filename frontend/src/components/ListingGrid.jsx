@@ -1,7 +1,15 @@
 import 'bootswatch/dist/flatly/bootstrap.css'
-
+import PaginationBasic from './PaginationBasic'
+import { useState } from 'react'
 
 export default function ListingGrid(props) {
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const indexOfLastPost = currentPage * props.itensPorPagina;
+	const indexOfFistPage = indexOfLastPost - props.itensPorPagina;
+	const currentPost = props.universidades.slice(indexOfFistPage, indexOfLastPost);
+
+	const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 	return (
 
@@ -18,13 +26,13 @@ export default function ListingGrid(props) {
 				</thead>
 				<tbody>
 					{
-						props.children.map( (universidade, index) => {
+						currentPost.map( (universidade, index) => {
 
 							return (
 
 								<tr key={index}>
-									<td universidade={ universidade  }>{universidade.name }</td>
-									<td universidade={ universidade  }>{universidade.alpha_two_code }</td>
+									<td universidade={ universidade }>{universidade.name }</td>
+									<td universidade={ universidade }>{universidade.alpha_two_code }</td>
 									<td universidade={ universidade }>
 										{ universidade.web_pages.length > 1 ? universidade.web_pages.map(uni => uni + " - ") : universidade.web_pages }
 									</td>
@@ -37,9 +45,16 @@ export default function ListingGrid(props) {
 						})
 					}
 				</tbody>
-				<tfoot>
-				</tfoot>
 			</table>
+
+			<PaginationBasic
+				posts={currentPost}
+				totalPosts={props.universidades.length}
+				itensPorPagina={props.itensPorPagina}
+				currentPage={currentPage}
+				paginate={paginate}
+			/>
+
 		</div>
 	)
 

@@ -6,29 +6,38 @@ import ListingGrid from '../components/ListingGrid'
 
 export default function University() {
 
+	const itensPorPagina = 10;
 	const [universidades, setUniversidades] = useState([]);
 
-	const getUniversidades = async () => {
-		try {
-			const result = await UniversityService.listar();
-			setUniversidades(result.data);
-		} catch (error) {
-			console.log(error.message);
-		}
-	}
-
 	useEffect( () => {
-			getUniversidades()
+
+		const getUniversidades = async () => {
+
+			try {
+				const result = await UniversityService.listar();
+				setUniversidades(result.data);
+
+			} catch (error) {
+				console.log(error.message);
+			}
+
+		};
+
+		getUniversidades();
+
 	}, [] );
+
 
 	return (
 
 		<div>
 			<Navbar></Navbar>
-			<ListingGrid>{ universidades }</ListingGrid>
+			<ListingGrid
+				universidades={universidades}
+				itensPorPagina={itensPorPagina}
+			/>
 		</div>
 
 	);
-
 
 }
