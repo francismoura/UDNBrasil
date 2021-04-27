@@ -5,15 +5,40 @@ import { useState } from 'react'
 export default function ListingGrid(props) {
 
 	const [currentPage, setCurrentPage] = useState(1);
+	const [preview, setPreview] = useState(false);
+	const [next, setNext] = useState(false);
 	const indexOfLastPost = currentPage * props.itensPorPagina;
 	const indexOfFistPage = indexOfLastPost - props.itensPorPagina;
 	const currentPost = props.universidades.slice(indexOfFistPage, indexOfLastPost);
 
-	const paginate = (pageNumber) => setCurrentPage(pageNumber)
+	const paginateNext = (pageNumber) => {
+		setCurrentPage(pageNumber + 1);
+		setNext(true);
+		setPreview(false);
+	};
+
+	const paginatePreview = (pageNumber) => {
+		setCurrentPage(pageNumber > 1 ? currentPage - 1 : 1);
+		setPreview(true);
+		setNext(false);
+	};
+
+	const paginationConfig = {
+		posts: currentPost,
+		totalPosts: props.universidades.length,
+		itensPorPagina: props.itensPorPagina,
+		currentPage: currentPage,
+		indexOfLastPost: indexOfLastPost,
+		indexOfFistPage: indexOfFistPage,
+		preview: preview,
+		next: next,
+		paginateNext: paginateNext,
+		paginatePreview: paginatePreview,
+	};
 
 	return (
 
-		<div className="container mt-5">
+		<div className="container d-flex flex-column mt-5">
 			<table className="table">
 				<thead>
 					<tr>
@@ -47,13 +72,7 @@ export default function ListingGrid(props) {
 				</tbody>
 			</table>
 
-			<PaginationBasic
-				posts={currentPost}
-				totalPosts={props.universidades.length}
-				itensPorPagina={props.itensPorPagina}
-				currentPage={currentPage}
-				paginate={paginate}
-			/>
+			<PaginationBasic {...paginationConfig}/>
 
 		</div>
 	)

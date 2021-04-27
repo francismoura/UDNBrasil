@@ -3,6 +3,9 @@ import UniversityService from '../services/universityService'
 import { useEffect, useState } from 'react'
 import Navbar from '../components/NavBar'
 import ListingGrid from '../components/ListingGrid'
+import CardForm from '../components/CardForm'
+import { Container, Row, Col } from 'react-bootstrap'
+
 
 export default function University() {
 
@@ -14,6 +17,7 @@ export default function University() {
 		const getUniversidades = async () => {
 
 			try {
+
 				const result = await UniversityService.listar();
 				setUniversidades(result.data);
 
@@ -27,16 +31,25 @@ export default function University() {
 
 	}, [] );
 
-
 	return (
-
-		<div>
-			<Navbar></Navbar>
-			<ListingGrid
-				universidades={universidades}
-				itensPorPagina={itensPorPagina}
-			/>
-		</div>
+		<>
+			<Navbar/>
+			<Container>
+				<Row>
+					<Col xs={12}>
+						<CardForm/>
+					</Col>
+				</Row>
+				<Row>
+					<Col xs={12}>
+						<ListingGrid
+							universidades={universidades}
+							itensPorPagina={itensPorPagina}
+						/>
+					</Col>
+				</Row>
+			</Container>
+		</>
 
 	);
 

@@ -4,23 +4,37 @@ import React from 'react'
 
 export default function PaginationBasic (props) {
 
-  let active = props.currentPage;
-  let items = [];
-  let totalItens = props.totalPosts;
-  let postPerPages = props.itensPorPagina;
+	let activeNext = props.next;
+	let activePreview = props.preview;
+	let currentPage = props.currentPage;
+	let totalItens = props.totalPosts;
+	let itemFirst = props.indexOfFistPage + 1;
+	let itemLast = props.indexOfLastPost;
+	const options = [10, 50, 100];
 
-  for (let number = 1; number <= Math.ceil(totalItens / postPerPages); number++) {
-    items.push(
-      <PageItem key={number} active={number === active} onClick={() => { props.paginate(number)} }>
-        {number}
-      </PageItem>,
-    );
-  }
+	const PaginationBasic = (
+			<Pagination className="justify-content-end">
+				<label>Linhas por página</label>
+				<select className="select" placeholder="Type">
+					{
+						options.map((option, index) => {
+							return (<option style={{color:"white"}} key={index} value={option}>{option}</option>)
+						})
+					}
+				</select>
+				<>
+					{itemFirst + ' - ' + itemLast + ' de ' + totalItens}
+				</>
 
-  const PaginationBasic = (
-      <Pagination>{items}</Pagination>
-  );
+				<PageItem active={activePreview} onClick={() => { props.paginatePreview(currentPage - 1)} }>
+					{"Preview"}
+				</PageItem>
+				<PageItem active={activeNext} onClick={() => { props.paginateNext(currentPage)} }>
+					{"Next"}
+				</PageItem>
+			</Pagination>
+	);
 
-  return PaginationBasic;
+	return PaginationBasic;
 
 };
