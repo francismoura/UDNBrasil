@@ -7,30 +7,22 @@ import { HEADER } from '../../utils/headers/headerUniversityTable';
 
 export default function TableCard(props) {
 
-	const optionsItemsPerPage = [10, 50, 100];
-	const [itemsPerPage, setItemsPerPage] = useState(optionsItemsPerPage[0]);
+	const options = [10, 50, 100]
+	const [itemsPerPage, setItemsPerPage] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [prev, setPrev] = useState(false);
 	const [next, setNext] = useState(false);
-
-	let indexOfLastPost = currentPage * itemsPerPage;
-	let indexOfFistPage = indexOfLastPost - itemsPerPage;
-	let currentPost = props.universities.slice(indexOfFistPage, indexOfLastPost);
-	let limitPage = Math.ceil(props.universities.length / itemsPerPage) - 1;
+	const indexOfLastPost = currentPage * itemsPerPage;
+	const indexOfFistPage = indexOfLastPost - itemsPerPage;
+	const currentPost = props.universities.slice(indexOfFistPage, indexOfLastPost);
+	const limitPage = Math.ceil(props.universities.length / itemsPerPage) - 1;
 
 	const changeItemsPerPage =  useCallback( (numberItems) => {
-
 		setItemsPerPage(numberItems);
 		setCurrentPage(1);
 		setNext(false);
 		setPrev(false);
-
-		this.indexOfLastPost = currentPage * itemsPerPage;
-		this.indexOfFistPage = this.indexOfLastPost - itemsPerPage;
-		this.currentPost = props.universities.slice(indexOfFistPage, indexOfLastPost);
-		this.limitPage = Math.ceil(props.universities.length / itemsPerPage) - 1;
-
-	},[props, currentPage, indexOfLastPost, indexOfFistPage, itemsPerPage]);
+	},[]);
 
 	const paginateNext = (pageNumber) => {
 		setCurrentPage(pageNumber <= limitPage ? pageNumber + 1 : currentPage);
@@ -55,7 +47,7 @@ export default function TableCard(props) {
 		paginateNext: paginateNext,
 		paginatePrev: paginatePrev,
 		changeItemsPerPage: changeItemsPerPage,
-		options: optionsItemsPerPage
+		options: options,
 	};
 
 	return (

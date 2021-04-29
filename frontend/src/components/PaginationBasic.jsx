@@ -18,14 +18,14 @@ export default function PaginationBasic (props) {
 		<Row className="justify-content-end my-1">
 			<Col className="col-pagination flex-row" xs={12} md="auto">
 				<label className="pr-3 mb-0">Linhas por página: </label>
-				<select className="select" defaultValue={10}>
+				<select className="select" defaultValue={10} onChange={(e) => props.changeItemsPerPage(e.target.value)}
+>
 					{
 						options.map((option, index) => {
 							return (
 								<option
 									key={index}
 									value={option}
-									onClick={() => props.changeItemsPerPage(option)}
 								>
 									{option}
 								</option>)
