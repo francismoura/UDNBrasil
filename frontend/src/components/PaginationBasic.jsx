@@ -1,40 +1,54 @@
+import '../styles/pagination.scss';
 import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
-import React from 'react'
+import { Row, Col, PageItem } from 'react-bootstrap';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 export default function PaginationBasic (props) {
 
-	let activeNext = props.next;
-	let activePreview = props.preview;
-	let currentPage = props.currentPage;
-	let totalItens = props.totalPosts;
-	let itemFirst = props.indexOfFistPage + 1;
-	let itemLast = props.indexOfLastPost;
-	const options = [10, 50, 100];
+	const activeNext = props.next;
+	const activePrev = props.prev;
+	const currentPage = props.currentPage;
+	const itemFirst = props.indexOfFistPage + 1;
+	const itemLast = props.indexOfLastPost;
+	const options = props.options;
+	const totalItens = props.totalPosts;
 
-	const PaginationBasic = (
-			<Pagination className="justify-content-end">
-				<label>Linhas por página</label>
-				<select className="select" placeholder="Type">
+	const paginationBasic = (
+
+		<Row className="justify-content-end my-1">
+			<Col className="col-pagination flex-row" xs={12} md="auto">
+				<label className="pr-3 mb-0">Linhas por página: </label>
+				<select className="select" defaultValue={10}>
 					{
 						options.map((option, index) => {
-							return (<option style={{color:"white"}} key={index} value={option}>{option}</option>)
+							return (
+								<option
+									key={index}
+									value={option}
+									onClick={() => props.changeItemsPerPage(option)}
+								>
+									{option}
+								</option>)
 						})
 					}
 				</select>
-				<>
-					{itemFirst + ' - ' + itemLast + ' de ' + totalItens}
-				</>
-
-				<PageItem active={activePreview} onClick={() => { props.paginatePreview(currentPage - 1)} }>
-					{"Preview"}
-				</PageItem>
-				<PageItem active={activeNext} onClick={() => { props.paginateNext(currentPage)} }>
-					{"Next"}
-				</PageItem>
-			</Pagination>
+			</Col>
+			<Col className="col-pagination align-self-center" xs={12} md="auto">
+				{itemFirst + '-' + (itemLast >= totalItens ? totalItens : itemLast) + ' de ' + totalItens}
+			</Col>
+			<Col className="col-pagination flex-row" xs={12} md="auto">
+				<Pagination className="mb-0">
+					<PageItem className="pr-1" active={activePrev} onClick={() => { props.paginatePrev(currentPage - 1)} }>
+						<BsChevronLeft/>
+					</PageItem>
+					<PageItem active={activeNext} onClick={() => { props.paginateNext(currentPage)} }>
+						<BsChevronRight/>
+					</PageItem>
+				</Pagination>
+			</Col>
+		</Row>
 	);
 
-	return PaginationBasic;
+	return paginationBasic;
 
 };

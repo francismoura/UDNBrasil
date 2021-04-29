@@ -1,7 +1,7 @@
-import '../styles/home.scss';
+import '../../styles/home.scss';
 import 'bootswatch/dist/flatly/bootstrap.css'
 import React from 'react'
-import UniversityService from '../services/universityService'
+import UniversityService from '../../services/universityService'
 import { useHistory } from 'react-router-dom';
 
 export default function Home() {

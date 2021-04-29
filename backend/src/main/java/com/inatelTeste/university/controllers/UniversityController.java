@@ -47,7 +47,7 @@ public class UniversityController {
     public ResponseEntity<List<University>> listar() throws Exception {
 
         List<University> universities = universityService.listar();
-
+        
         return ResponseEntity.ok()
                 .header(EnviromentVariables.header_cors(), EnviromentVariables.baseUrlFrontend())
                 .body(universities);
