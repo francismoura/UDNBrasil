@@ -1,11 +1,14 @@
 package com.inatelTeste.university.services;
 
+import com.inatelTeste.configurations.utils.FilterParams;
 import com.inatelTeste.university.dtos.UniversityDTO;
 import com.inatelTeste.university.interfaces.IUniversityService;
 import com.inatelTeste.university.models.University;
 import com.inatelTeste.university.repositories.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -52,10 +55,13 @@ public class UniversityService implements IUniversityService {
     }
 
     @Override
-    public List<University> listar() throws Exception{
+    public Page<University> listar(Pageable pageable,  String stringSearch) {
+        return universityRepository.findByName(stringSearch, pageable);
+    }
 
-        return universityRepository.findAll();
-
+    @Override
+    public Page<University> listar(Pageable pageable) {
+        return universityRepository.findAll(pageable);
     }
 
     @Override

@@ -1,5 +1,5 @@
 import '../../styles/university.scss';
-import UniversityService from '../../services/universityService';
+import universityService from '../../services/universityService';
 import { useEffect, useState } from 'react';
 import Navbar from '../../components/NavBar';
 import TableCard from './TableCard';
@@ -8,21 +8,36 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export default function University() {
 
-	const [universities, setUniversities] = useState([]);
+	const [filterParams] = useState({
+		currentPage: 0,
+		itemsPerPage: 10,
+		sortType: 'name,asc',
+		stringSearch: '',
+	});
+
+	const [dataListing, setDataListing] = useState({});
+
+	const updatePagination = async (params) => {
+		try {
+			const result = await universityService.list(params);
+			setDataListing(result.data);
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
 
 	useEffect( () => {
-		const getUniversities = async () => {
-			try {
-				const result = await UniversityService.listar();
-				setUniversities(result.data);
-			} catch (error) {
-				console.log(error.message);
-			}
-		};
-		getUniversities();
-	}, [] );
+		updatePagination(filterParams);
+		console.log(filterParams);
+	}, [filterParams] );
+
+	const isEmpty = (obj) => {
+		return Object.keys(obj).length !== 0
+	}
 
 	return (
+
+		isEmpty(dataListing) &&
 		<>
 			<Navbar/>
 			<Container fluid="sm">
@@ -34,7 +49,9 @@ export default function University() {
 				<Row>
 					<Col>
 						<TableCard
-							universities={universities}
+							dataListing={dataListing}
+							filterParams={filterParams}
+							updatePagination={updatePagination}
 						/>
 					</Col>
 				</Row>

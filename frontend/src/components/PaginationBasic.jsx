@@ -8,10 +8,10 @@ export default function PaginationBasic (props) {
 	const activeNext = props.next;
 	const activePrev = props.prev;
 	const currentPage = props.currentPage;
-	const itemFirst = props.indexOfFistPage + 1;
-	const itemLast = props.indexOfLastPost;
+	const indexFirst = props.indexOfFistPage + 1;
+	const indexLast = props.indexOfLastPost;
 	const options = props.options;
-	const totalItens = props.totalPosts;
+	const totalPosts = props.totalPosts;
 
 	const paginationBasic = (
 
@@ -34,11 +34,11 @@ export default function PaginationBasic (props) {
 				</select>
 			</Col>
 			<Col className="col-pagination align-self-center" xs={12} md="auto">
-				{itemFirst + '-' + (itemLast >= totalItens ? totalItens : itemLast) + ' de ' + totalItens}
+				{indexFirst + '-' + (indexLast >= totalPosts ? totalPosts : indexLast) + ' de ' + totalPosts}
 			</Col>
 			<Col className="col-pagination flex-row" xs={12} md="auto">
 				<Pagination className="mb-0">
-					<PageItem className="pr-1" active={activePrev} onClick={() => { props.paginatePrev(currentPage - 1)} }>
+					<PageItem className="pr-1" active={activePrev} onClick={() => { props.paginatePrev()} }>
 						<BsChevronLeft/>
 					</PageItem>
 					<PageItem active={activeNext} onClick={() => { props.paginateNext(currentPage)} }>
