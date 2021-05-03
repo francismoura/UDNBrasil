@@ -1,24 +1,21 @@
-import '../styles/home.scss';
+import '../../styles/home.scss';
 import 'bootswatch/dist/flatly/bootstrap.css'
 import React from 'react'
-import UniversityService from '../services/universityService'
+import UniversityService from '../../services/universityService'
 import { useHistory } from 'react-router-dom';
 
 export default function Home() {
 
 	const history = useHistory();
 
-	const iniciar= () => {
+	const startApplication = () => {
 
-		UniversityService.iniciar()
+		UniversityService.start()
 		.then( result => {
-
 			if (result.data === "OK") {
         history.push(`/api/universidades`);
 			}
-
 		})
-
 	}
 
 	return (
@@ -29,7 +26,12 @@ export default function Home() {
 				<h4>Frontend com ReactJS e API desenvolvida com Spring Boot + MongoDB.</h4>
 			</div>
 			<div className="btn-iniciar d-flex flex-row">
-				<button type="button" className="btn-external btn btn-primary btn-lg rounded-circle" onClick={iniciar}>Iniciar!</button>
+				<button
+					type="button"
+					className="btn-external btn btn-primary btn-lg rounded-circle"
+					onClick={startApplication}>
+					{ "Iniciar!"}
+				</button>
 			</div>
 		</div>
 

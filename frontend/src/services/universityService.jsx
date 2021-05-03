@@ -1,21 +1,26 @@
-import ApiService from './apiService';
+import apiService from './apiService';
 
 const UniversityService = {
 
-    iniciar: async () => ApiService.get('/iniciar'),
+	save: async (university) => apiService.post('/salvar', university),
 
-    listar: async (universidadeFiltro) => {
-        if (universidadeFiltro) {
-            return ApiService.post(`/listar/?
-						page=${universidadeFiltro.pagina > 0 ? universidadeFiltro.pagina : 0}
-						&size=${universidadeFiltro.itemsPorPagina > 0 ? universidadeFiltro.itemsPorPagina : 10}
-						&sort=${universidadeFiltro.tipoOrdenacao ? universidadeFiltro.tipoOrdenacao : 'nome,asc'}`,
-                universidadeFiltro
-            );
-        } else {
-            return ApiService.get('/listar');
-        }
-    },
+	update: async (university) => apiService.post('/editar', university),
+
+	start: async () => apiService.get('/iniciar'),
+
+	list: async (filterParams) => {
+		console.log(filterParams);
+		if (filterParams) {
+      return apiService.post(`/listar/?
+						page=${filterParams.currentPage > 0 ? filterParams.currentPage : 0}
+						&size=${filterParams.itemsPerPage > 0 ? filterParams.itemsPerPage : 10}
+						&sort=${filterParams.sortType ? filterParams.sortType : 'name,asc'}`,
+						filterParams
+      );
+		} else {
+			return apiService.post('/listar/?page=0&size=10&sort=name,asc', {});
+		}
+	},
 
 };
 

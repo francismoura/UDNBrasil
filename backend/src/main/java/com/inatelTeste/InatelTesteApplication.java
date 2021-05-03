@@ -22,38 +22,4 @@ public class InatelTesteApplication {
         SpringApplication.run(InatelTesteApplication.class, args);
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//
-//        URI uri = new URI("http://my favorite site!");
-//
-//        universityRepository.deleteAll();
-//
-//        DomainDTO domainDTO = new DomainDTO();
-//        domainDTO.setDomain("teste dominio");
-//        Domain domain = new Domain.DomainBuilder(domainDTO).build();
-//
-//        List<Domain> domains = new ArrayList<>();
-//        domains.add(domain);
-//
-//        WebPageDTO webPageDTO = new WebPageDTO();
-//        webPageDTO.setUri(uri);
-//        WebPage webPage = new WebPage.WebPageBuilder(webPageDTO).build();
-//
-//        List<WebPage> webPages = new ArrayList<>();
-//        webPages.add(webPage);
-//
-//
-//        UniversityDTO universityDTO = new UniversityDTO();
-//        universityDTO.setDomains(domains);
-//        universityDTO.setWeb_pages(webPages);
-//        universityDTO.setName("Bazinga University");
-//        universityDTO.setState_province("RJ");
-//        universityDTO.setCountry("brazil");
-//        universityDTO.setAlpha_two_code("BU");
-//
-//        universityRepository.save(new University.UniversityBuilder(universityDTO).build());
-//
-//    }
-
 }

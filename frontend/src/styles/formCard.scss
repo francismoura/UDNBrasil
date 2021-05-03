@@ -1,0 +1,16 @@
+@import './global';
+
+.form-control {
+
+	&:not(active) {
+		color: black;
+	}
+
+	&:focus {
+		color: black;
+	}
+}
+
+.icon-plus, .icon-close {
+	color: $color-success;
+}

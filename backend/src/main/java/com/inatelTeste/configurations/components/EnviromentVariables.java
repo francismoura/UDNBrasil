@@ -12,7 +12,7 @@ public final class EnviromentVariables {
     private static Environment environment;
 
     @Autowired
-    private void VariaveisAmbientes(final Environment env) {
+    private EnviromentVariables(final Environment env) {
         setEnvironment(env);
     }
 
@@ -26,10 +26,6 @@ public final class EnviromentVariables {
 
     public static String baseUrlFrontend() {
         return environment.getProperty("server.dev.frontend.baseUrl");
-    }
-
-    public static String header_cors() {
-        return environment.getProperty("app.http.header.cors");
     }
 
 }

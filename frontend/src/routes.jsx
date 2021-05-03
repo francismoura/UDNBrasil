@@ -1,8 +1,6 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import University from './views/University';
-import Home from './views/Home'
-
+import University from './views/university/University';
+import Home from './views/home/Home';
 
 function Routes() {
 
@@ -15,9 +13,7 @@ function Routes() {
                 <Route exact path="/">
                     <Redirect to="/api" />
                 </Route>
-
                 <Route path="/api" exact component={Home} />
-
                 <Route path="/api/universidades" exact component={University} />
 
             </Switch>
