@@ -6,11 +6,10 @@ import com.inatelTeste.university.models.University;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+
 public interface IUniversityService {
 
-    Page<University> listar(Pageable pageable, String filterParams);
-
-    Page<University> listar(Pageable pageable);
+    Page<University> listar(FilterParams searchString, Pageable pageable);
 
     String starter();
 

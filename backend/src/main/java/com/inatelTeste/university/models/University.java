@@ -1,22 +1,19 @@
 package com.inatelTeste.university.models;
 
 import com.inatelTeste.university.dtos.UniversityDTO;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
-@Document
+@Document(collection="university")
 public class University {
 
     @Id

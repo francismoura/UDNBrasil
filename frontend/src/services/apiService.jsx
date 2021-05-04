@@ -3,7 +3,7 @@ import { loading } from '../utils/loading.jsx'
 // import { NotificationManager } from 'react-notifications';
 
 const httpClient = axios.create({
-	baseURL: "http://localhost:8080/api/universidades",
+	baseURL: "http://localhost:8080/api/universidades"
 });
 
 let countRequest = 0;

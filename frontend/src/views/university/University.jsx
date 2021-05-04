@@ -12,7 +12,7 @@ export default function University() {
 		currentPage: 0,
 		itemsPerPage: 10,
 		sortType: 'name,asc',
-		stringSearch: '',
+		searchString: '',
 	});
 
 	const [dataListing, setDataListing] = useState({});
@@ -40,7 +40,7 @@ export default function University() {
 		isEmpty(dataListing) &&
 		<>
 			<Navbar/>
-			<Container fluid="sm">
+			<Container>
 				<Row>
 					<Col>
 						<FormCard/>

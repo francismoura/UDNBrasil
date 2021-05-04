@@ -1,7 +1,7 @@
 import 'bootswatch/dist/flatly/bootstrap.css';
 import '../../styles/tableCard.scss';
 import { useState, useCallback } from 'react';
-import { Table, Row, Col, Container } from 'react-bootstrap';
+import { Table, Row, Col,Container  } from 'react-bootstrap';
 import { BsSearch  } from 'react-icons/bs';
 import PaginationBasic from '../../components/PaginationBasic';
 import { HEADER } from '../../utils/headers/headerUniversityTable';
@@ -72,7 +72,7 @@ export default function TableCard(props) {
 
 	const searchData = (text) => {
 		props.filterParams.currentPage = 0;
-		props.filterParams.stringSearch = text;
+		props.filterParams.searchString = text;
 		props.updatePagination(props.filterParams);
 	}
 
@@ -102,7 +102,7 @@ export default function TableCard(props) {
 				</Col>
 			</Row>
 			<div className="card-body d-flex flex-column">
-				<Table className="table" bordered responsive>
+				<Table className="table ts" bordered responsive>
 					<thead>
 						<tr>
 							{
@@ -121,7 +121,11 @@ export default function TableCard(props) {
 								return (
 
 									<tr key={index}>
-										<td university={ university }>{university.name}</td>
+										<td university={ university }>
+												<div className="column-name">
+													{university.name}
+                        </div>
+										</td>
 										<td university={ university }>
 											{
 												university.web_pages.length > 1 ? university.web_pages.join(", "): university.web_pages
@@ -146,6 +150,7 @@ export default function TableCard(props) {
 				<PaginationBasic {...paginationConfig}/>
 
 			</div>
+
 		</Container>
 	)
 
