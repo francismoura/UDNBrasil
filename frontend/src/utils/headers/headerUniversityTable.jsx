@@ -16,6 +16,12 @@ const HEADER = [{
 	{
 		name: "Estado",
 		value: "state_province",
+		width: "auto"
+	},
+	{
+		name: "Ações",
+		value: "delete",
+		width: "auto"
 	}
 ];
 

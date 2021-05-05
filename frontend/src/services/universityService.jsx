@@ -6,10 +6,13 @@ const UniversityService = {
 
 	update: async (university) => apiService.post('/editar', university),
 
+	remove: async (university) => apiService.post('/remover', university),
+
 	start: async () => apiService.get('/iniciar'),
 
+	findById: async (idUniversity) => apiService.get('/findById/' + idUniversity ),
+
 	list: async (filterParams) => {
-		console.log(filterParams);
 		if (filterParams) {
       return apiService.post(`/listar/?
 						page=${filterParams.currentPage > 0 ? filterParams.currentPage : 0}

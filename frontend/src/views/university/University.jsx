@@ -17,6 +17,17 @@ export default function University() {
 
 	const [dataListing, setDataListing] = useState({});
 
+	const remove = async (item) => {
+		try{
+			const result = await universityService.remove(item)
+			if (result) {
+				updatePagination(filterParams);
+			}
+		} catch (error)   {
+			console.error(error);
+		}
+	}
+
 	const updatePagination = async (params) => {
 		try {
 			const result = await universityService.list(params);
@@ -28,7 +39,7 @@ export default function University() {
 
 	useEffect( () => {
 		updatePagination(filterParams);
-		console.log(filterParams);
+		console.log("teste")
 	}, [filterParams] );
 
 	const isEmpty = (obj) => {
@@ -52,6 +63,7 @@ export default function University() {
 							dataListing={dataListing}
 							filterParams={filterParams}
 							updatePagination={updatePagination}
+							remove={remove}
 						/>
 					</Col>
 				</Row>
