@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class FilterParams {
 
-    private String stringSearch;
+    private String searchString;
 
 }

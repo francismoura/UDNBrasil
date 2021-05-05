@@ -1,0 +1,12 @@
+.table td {
+  vertical-align: middle !important;
+
+  &:last-child {
+    text-align: center !important;
+  }
+
+  .icon-action {
+    cursor: pointer !important;
+  }
+
+}
