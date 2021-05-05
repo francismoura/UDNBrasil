@@ -2,18 +2,44 @@ import 'bootswatch/dist/flatly/bootstrap.css';
 import '../../styles/formCard.scss';
 import { useState } from 'react';
 import Estados from '../../utils/estados';
-import { Collapse, Row, Col } from 'react-bootstrap';
-import { BsPlusCircleFill, BsXCircleFill } from 'react-icons/bs';
+import { Collapse, Row, Col, Button } from 'react-bootstrap';
+import { BsPlusCircleFill, BsXCircleFill, BsFillDashCircleFill } from 'react-icons/bs';
 
 export default function FormCard() {
 
+	const university = {};
+
 	const [open, setOpen] = useState(false);
 	const [changeIcon, setChangeIcon] = useState(false);
+	const [indexWebPage, setIndexWebPage] = useState([]);
+	const [indexDomain, setIndexDomain] = useState([]);
+	const [counterWebPage, setCounterWebPage] = useState(0);
+	const [counterDomain, setCounterDomain] = useState(0);
 
 	const actionIcon = () => {
 		setOpen(!open);
 		setChangeIcon(!changeIcon);
 	}
+
+	const addWebPage = () => {
+		setIndexWebPage(prevIndexes => [...prevIndexes, counterWebPage]);
+		setCounterWebPage(prevCounter => prevCounter + 1);
+	}
+
+	const addDomain = () => {
+		setIndexDomain(prevIndexes => [...prevIndexes, counterDomain]);
+		setCounterDomain(prevCounter => prevCounter + 1);
+	}
+
+	const removeWebPage= index => () => {
+		setIndexWebPage(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
+		setCounterWebPage(prevCounter => prevCounter - 1);
+	};
+
+	const removeDomain= index => () => {
+		setIndexDomain(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
+		setCounterDomain(prevCounter => prevCounter - 1);
+	};
 
 	return (
 
@@ -76,7 +102,38 @@ export default function FormCard() {
 								<Col>
 									<div className="form-group">
 										<label>Endeços Web</label>
-										<input type="text" className="form-control" id="inputPageWeb" placeholder="htt://" />
+										<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+											<input
+												className="form-control"
+												id="inputWebPage"
+												type="text"
+												name={university.web_pages}
+												placeholder="https://"
+											/>
+											{
+												indexWebPage.length > 0 &&
+												<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeWebPage(indexWebPage[0])}/>
+											}
+										</div>
+										{
+											indexWebPage.map( (index) => {
+												const fieldName = `university[${index}]`;
+												const inputWebPage = `inputWebPage[${index}]`;
+												return (
+													<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+														<input
+															id={inputWebPage}
+															type="text"
+															className="form-control"
+															name={`${fieldName}.web_pages`}
+															placeholder="https://"
+														/>
+														<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeWebPage(index)}/>
+													</div>
+												)
+											})
+										}
+										<Button type="button" onClick={addWebPage} variant="success">Novo Endereço</Button>
 									</div>
 								</Col>
 							</Row>
@@ -84,7 +141,32 @@ export default function FormCard() {
 								<Col>
 									<div className="form-group">
 										<label>Domínios</label>
-										<input type="text" className="form-control" id="inputPageWeb" placeholder="Ex.: universidade.br" />
+										<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+											<input type="text" className="form-control" id="inputDomain" placeholder="universidade.br" />
+											{
+												indexDomain.length > 0 &&
+												<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeDomain(indexDomain[0])}/>
+											}
+										</div>
+										{
+											indexDomain.map( (index) => {
+												const fieldName = `university[${index}]`;
+												const inputIndex = `intutDomain[${index}]`
+												return (
+													<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+														<input
+															id={inputIndex}
+															type="text"
+															className="form-control"
+															name={`${fieldName}.domains`}
+															placeholder="universidade.br"
+														/>
+														<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeDomain(index)}/>
+													</div>
+												)
+											})
+										}
+										<Button type="button" onClick={addDomain} variant="success">Novo Domínio</Button>
 									</div>
 								</Col>
 							</Row>
