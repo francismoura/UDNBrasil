@@ -22,10 +22,10 @@ public class University {
 
     private String alpha_two_code;
     private String country;
-    private String name;
-    private String state_province;
     private List<String> web_pages;
     private List<String> domains;
+    private String name;
+    private String state_province;
 
     public University(UniversityBuilder builder) {
 
@@ -54,7 +54,7 @@ public class University {
             this.web_pages = universityDTO.getWeb_pages();
             this.domains = universityDTO.getDomains();
             this.name = universityDTO.getName();
-            this.state_province = universityDTO.getStateProvince();
+            this.state_province = universityDTO.getState_province();
 
         }
 

@@ -1,22 +1,22 @@
 package com.inatelTeste.university.controllers;
 
-import com.inatelTeste.configurations.utils.FilterParams;
+import com.inatelTeste.configurations.components.EnviromentVariables;
 import com.inatelTeste.university.dtos.UniversityDTO;
+import com.inatelTeste.university.interfaces.IUniversityService;
 import com.inatelTeste.university.models.University;
-import com.inatelTeste.university.services.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/universidades")
 public class UniversityController {
 
     @Autowired
-    UniversityService universityService;
+    IUniversityService universityService;
 
     @GetMapping(value = "/iniciar")
     public String iniciar() {
@@ -28,15 +28,29 @@ public class UniversityController {
         return universityService.salvar(universityDTO);
     }
 
-    @PostMapping(value = "/listar")
-    public Page<University> listar(@PageableDefault(size = 20) Pageable pageable,
-                                   @RequestBody FilterParams searchString) {
-        return universityService.listar(searchString, pageable);
+    @GetMapping(value = "/listar")
+    public ResponseEntity<Page<University>> listar(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "") String filterParams) {
+
+        Page<University> universities = universityService.listar(page, size, sortBy, filterParams);
+
+        return ResponseEntity.ok()
+                .header(String.valueOf(new HttpHeaders()), EnviromentVariables.baseUrlFrontend())
+                .body(universities);
+
     }
 
-    @PostMapping(value = "/remover")
-    public University remover(@RequestBody UniversityDTO universityDTO) {
-        return universityService.remover(universityDTO);
+    @PostMapping(value = "/remover/{id}")
+    public ResponseEntity<University> remover(@RequestBody UniversityDTO universityDTO) {
+        University university = universityService.remover(universityDTO);
+
+        return ResponseEntity.ok()
+                .header(String.valueOf(new HttpHeaders()), EnviromentVariables.baseUrlFrontend())
+                .body(university);
+
     }
 
     @PostMapping(value = "/atualizar")

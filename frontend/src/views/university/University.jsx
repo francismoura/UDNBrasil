@@ -8,6 +8,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export default function University() {
 
+	const [university] = useState({
+		name: null,
+    state_province: '',
+    web_pages: [],
+    domains: [],
+	});
+
 	const [filterParams] = useState({
 		currentPage: 0,
 		itemsPerPage: 10,
@@ -39,7 +46,6 @@ export default function University() {
 
 	useEffect( () => {
 		updatePagination(filterParams);
-		console.log("teste")
 	}, [filterParams] );
 
 	const isEmpty = (obj) => {
@@ -54,7 +60,7 @@ export default function University() {
 			<Container>
 				<Row>
 					<Col>
-						<FormCard/>
+						<FormCard university={university}/>
 					</Col>
 				</Row>
 				<Row>

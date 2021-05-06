@@ -4,17 +4,15 @@ import { useState } from 'react';
 import Estados from '../../utils/estados';
 import { Collapse, Row, Col, Button } from 'react-bootstrap';
 import { BsPlusCircleFill, BsXCircleFill, BsFillDashCircleFill } from 'react-icons/bs';
+// import form react hook
 
-export default function FormCard() {
 
-	const university = {};
+export default function FormCard(props) {
 
 	const [open, setOpen] = useState(false);
 	const [changeIcon, setChangeIcon] = useState(false);
-	const [indexWebPage, setIndexWebPage] = useState([]);
-	const [indexDomain, setIndexDomain] = useState([]);
-	const [counterWebPage, setCounterWebPage] = useState(0);
-	const [counterDomain, setCounterDomain] = useState(0);
+	const [indexWebPage, setIndexWebPage] = useState([0]);
+	const [indexDomain, setIndexDomain] = useState([0]);
 
 	const actionIcon = () => {
 		setOpen(!open);
@@ -22,24 +20,37 @@ export default function FormCard() {
 	}
 
 	const addWebPage = () => {
-		setIndexWebPage(prevIndexes => [...prevIndexes, counterWebPage]);
-		setCounterWebPage(prevCounter => prevCounter + 1);
+		const max = Math.max(...indexWebPage);
+		setIndexWebPage([...indexWebPage, max + 1]);
 	}
 
 	const addDomain = () => {
-		setIndexDomain(prevIndexes => [...prevIndexes, counterDomain]);
-		setCounterDomain(prevCounter => prevCounter + 1);
+		const max = Math.max(...indexDomain);
+		setIndexDomain([...indexDomain, max + 1]);
 	}
 
 	const removeWebPage= index => () => {
-		setIndexWebPage(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
-		setCounterWebPage(prevCounter => prevCounter - 1);
+		setIndexWebPage([...indexWebPage.filter(item => item !== index)]);
+		props.university.web_pages.splice(index, 1);
+		indexWebPage.sort();
 	};
 
 	const removeDomain= index => () => {
-		setIndexDomain(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
-		setCounterDomain(prevCounter => prevCounter - 1);
+		setIndexDomain([...indexDomain.filter(item => item !== index)]);
+		props.university.domains.splice(index, 1);
+		indexDomain.sort();
 	};
+
+	const onSubmit = (event) => {
+		event.preventDefault();
+		if (checkForm());
+		console.log(props.university);
+		console.log("testeda porra");
+	}
+
+	const checkForm = () => {
+		return true;
+	}
 
 	return (
 
@@ -75,20 +86,27 @@ export default function FormCard() {
 			</div>
 			<Collapse in={open}>
 				<div className="card-body">
-					<form>
+					<form id="formUniversity" onSubmit={onSubmit}>
 						<fieldset>
 							<Row>
 								<Col xs={12} md={8}>
 									<div className="form-group">
 										<label>Nome da universidade</label>
-										<input type="text" className="form-control" id="inputNome" placeholder="Nome da universidade" />
+										<input
+											className="form-control"
+											id="inputNome"
+											name="name"
+											type="text"
+											value={props.university.name}
+											placeholder="Nome da universidade"
+										/>
 									</div>
 								</Col>
 								<Col xs={12} md={4}>
 									<div className="form-group">
 										<label>Estado</label>
-										<select className="form-control">
-											<option defaultValue="DEFAULT" disabled selected>Estados...</option>
+										<select className="form-control" value={props.university.state_province}>
+											<option defaultValue="DEFAULT" disabled>Estados...</option>
 											{
 												Object.entries(Estados).map((uf, index) => {
 													return <option key={index} value={uf[0]}>{uf[1]}</option>
@@ -98,81 +116,63 @@ export default function FormCard() {
 									</div>
 								</Col>
 							</Row>
-							<Row>
+							<Row className="mb-3">
 								<Col>
-									<div className="form-group">
+									<div className="form-group d-flex flex-column">
 										<label>Endeços Web</label>
-										<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
-											<input
-												className="form-control"
-												id="inputWebPage"
-												type="text"
-												name={university.web_pages}
-												placeholder="https://"
-											/>
-											{
-												indexWebPage.length > 0 &&
-												<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeWebPage(indexWebPage[0])}/>
-											}
-										</div>
 										{
 											indexWebPage.map( (index) => {
-												const fieldName = `university[${index}]`;
-												const inputWebPage = `inputWebPage[${index}]`;
+												const fieldName = `web_pages[${index}]`;
+												const fieldId = `inputWebPages[${index}]`;
 												return (
-													<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+													<div className="d-flex flex-row align-items-center justify-content-center mb-2">
 														<input
-															id={inputWebPage}
-															type="text"
 															className="form-control"
-															name={`${fieldName}.web_pages`}
+															id={fieldId}
+															type="text"
+															name={`${fieldName}`}
+															value={props.university.web_pages[index]}
 															placeholder="https://"
 														/>
-														<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeWebPage(index)}/>
+													{ indexWebPage.length > 1 && <BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeWebPage(index)}/> }
 													</div>
 												)
 											})
 										}
-										<Button type="button" onClick={addWebPage} variant="success">Novo Endereço</Button>
 									</div>
+									<Button type="button" onClick={addWebPage} variant="success">Novo Endereço</Button>
 								</Col>
 							</Row>
 							<Row>
 								<Col>
-									<div className="form-group">
+									<div className="form-group d-flex flex-column">
 										<label>Domínios</label>
-										<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
-											<input type="text" className="form-control" id="inputDomain" placeholder="universidade.br" />
-											{
-												indexDomain.length > 0 &&
-												<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeDomain(indexDomain[0])}/>
-											}
-										</div>
 										{
 											indexDomain.map( (index) => {
-												const fieldName = `university[${index}]`;
-												const inputIndex = `intutDomain[${index}]`
+												const fieldName = `domains[${index}]`;
+												const fieldId = `inputDomains[${index}]`
 												return (
-													<div className="d-flex flex-direction-column align-items-center justify-content-center mb-3">
+													<div className="d-flex flex-row align-items-center justify-content-center mb-2">
 														<input
-															id={inputIndex}
+														className="form-control"
+															id={fieldId}
 															type="text"
-															className="form-control"
-															name={`${fieldName}.domains`}
+															name={`${fieldName}`}
+															value={props.university.domains[index]}
 															placeholder="universidade.br"
 														/>
-														<BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeDomain(index)}/>
+														{ indexDomain.length > 1 && <BsFillDashCircleFill className="mx-2" color="#F56C6C" size="1.4em" onClick={removeDomain(index)}/> }
 													</div>
 												)
 											})
 										}
-										<Button type="button" onClick={addDomain} variant="success">Novo Domínio</Button>
 									</div>
+									<Button type="button" onClick={addDomain} variant="success">Novo Domínio</Button>
 								</Col>
 							</Row>
 							<Row>
 								<Col className="d-flex justify-content-end">
-									<button type="submit" className="btn btn-success">Cadastrar</button>
+									<button form="formUniversity" type="submit" className="btn btn-success">Cadastrar</button>
 								</Col>
 							</Row>
 						</fieldset>
