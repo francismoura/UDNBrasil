@@ -12,16 +12,18 @@ export default function TableCard(props) {
 	const options = [10, 50, 100]
 	const [prev, setPrev] = useState(false);
 	const [next, setNext] = useState(false);
+	const [option, setOption] = useState();
 	const [university, setUniversity] = useState({})
 	const [modalShow, setModalShow] = useState(false);
 	const indexOfLastPost = (props.dataListing.pageable.pageNumber + 1) * props.filterParams.itemsPerPage;
 	const indexOfFistPage = indexOfLastPost - props.filterParams.itemsPerPage;
 	const currentPost = props.dataListing.content;
 
-	const changeItemsPerPage =  useCallback( (option) => {
+	const changeItemsPerPage =  useCallback( (event) => {
 		setNextPrev(false, false);
 		props.filterParams.currentPage = 0;
-		props.filterParams.itemsPerPage = option;
+		props.filterParams.itemsPerPage = event.target.value;
+		setOption(event.target.value);
 		props.updatePagination(props.filterParams);
 		window.scrollTo(0, 0);
 	}, [props]);
@@ -61,12 +63,13 @@ export default function TableCard(props) {
 		currentPage: props.dataListing.pageable.pageNumber,
 		indexOfLastPost: indexOfLastPost,
 		indexOfFistPage: indexOfFistPage,
+		options: options,
+		option: option,
 		prev: prev,
 		next: next,
 		paginateNext: paginateNext,
 		paginatePrev: paginatePrev,
 		changeItemsPerPage: changeItemsPerPage,
-		options: options,
 	};
 
 	const searchData = (text) => {
@@ -126,6 +129,7 @@ export default function TableCard(props) {
 						<tbody>
 							{
 								currentPost.map( (university, index) => {
+									console.log(university);
 									return (
 										<tr key={index}>
 											<td university={ university }>

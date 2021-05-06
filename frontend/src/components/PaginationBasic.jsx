@@ -2,6 +2,7 @@ import '../styles/pagination.scss';
 import Pagination from 'react-bootstrap/Pagination'
 import { Row, Col, PageItem } from 'react-bootstrap';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+// import { useState } from 'react';
 
 export default function PaginationBasic (props) {
 
@@ -10,7 +11,6 @@ export default function PaginationBasic (props) {
 	const currentPage = props.currentPage;
 	const indexFirst = props.indexOfFistPage + 1;
 	const indexLast = props.indexOfLastPost;
-	const options = props.options;
 	const totalPosts = props.totalPosts;
 
 	const paginationBasic = (
@@ -18,11 +18,17 @@ export default function PaginationBasic (props) {
 		<Row className="justify-content-end my-1">
 			<Col className="col-pagination flex-row" xs={12} md="auto">
 				<label className="pr-3 mb-0">Linhas por página: </label>
-				<select className="select" defaultValue={10} onChange={(e) => props.changeItemsPerPage(e.target.value)}>
+				<select
+					className="select"
+					name="option"
+					value={props.option}
+					defaultValue={10}
+					onChange={(e) => props.changeItemsPerPage(e)}
+				>
 					{
-						options.map((option, index) => {
+						props.options.map((option, index) => {
 							return (
-								<option key={index}	value={option}> {option} </option>)
+								<option key={index}	value={props.options[index]}> {option} </option>)
 						})
 					}
 				</select>

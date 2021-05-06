@@ -10,9 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class InatelTesteApplication {
 
-    @Autowired
-    UniversityRepository universityRepository;
-
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();

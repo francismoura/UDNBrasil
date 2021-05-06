@@ -10,21 +10,21 @@ const UniversityService = {
 
 	start: async () => apiService.get('/iniciar'),
 
-	findById: async (idUniversity) => apiService.get('/findById/' + idUniversity ),
+	findById: async (idUniversity) => apiService.get('/findById/' + idUniversity),
 
 	list: async (filterParams) => {
-		if (filterParams) {
-      return apiService.post(`/listar/?
-						page=${filterParams.currentPage > 0 ? filterParams.currentPage : 0}
-						&size=${filterParams.itemsPerPage > 0 ? filterParams.itemsPerPage : 10}
-						&sort=${filterParams.sortType ? filterParams.sortType : 'name,asc'}`,
-						filterParams
-      );
+		if (filterParams.sarchString) {
+			return apiService.get('/listar',
+				`?page=${filterParams.currentPage > 0 ? filterParams.currentPage : 0}
+				&size=${filterParams.itemsPerPage > 0 ? filterParams.itemsPerPage : 10}
+				&sort=${filterParams.sortType ? filterParams.sortType : 'name,asc'}
+				&filterParams=${filterParams.sarchString}`
+			);
 		} else {
-			return apiService.post('/listar/?page=0&size=10&sort=name,asc', {});
-		}
-	},
+			return apiService.get('/listar', `?page=0&size=10&sort=name,asc&=filterParams=""`);
+			}
+		},
 
-};
+	};
 
 export default UniversityService
