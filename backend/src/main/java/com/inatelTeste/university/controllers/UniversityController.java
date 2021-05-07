@@ -10,6 +10,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 //@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/app/universidades")
@@ -38,17 +40,18 @@ public class UniversityController {
 
     }
 
-    @PostMapping(value = "/remover/{id}")
-    public ResponseEntity<University> remover(@RequestBody UniversityDTO universityDTO) {
-        University university = universityService.remover(universityDTO);
+    @DeleteMapping(value = "/remover/{id}")
+    public ResponseEntity<University> remover(@PathVariable(value = "id") String id) {
+
+        University university = universityService.remover(id);
 
         return ResponseEntity.ok()
                 .body(university);
 
     }
 
-    @PostMapping(value = "/atualizar")
-    public University atualizar(@RequestBody UniversityDTO universityDTO) {
+    @PutMapping(value = "/atualizar")
+    public University atualizar(@Valid @RequestBody UniversityDTO universityDTO) {
         return universityService.atualizar(universityDTO);
     }
 

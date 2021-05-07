@@ -84,7 +84,7 @@ export default function TableCard(props) {
 	};
 
 	const removeItem = () => {
-		props.remove(university);
+		props.remove(university.id);
 		setModalShow(false)
 	}
 

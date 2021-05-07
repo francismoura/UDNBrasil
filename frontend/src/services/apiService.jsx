@@ -66,6 +66,23 @@ const ApiService = {
 
 	},
 
+	async update (resource, slug, params) {
+		try {
+			return await httpClient.put(`${resource}/${slug}`, params);
+		} catch (error) {
+			return Promise.reject(error);
+		}
+	},
+
+	async delete (resource) {
+		try {
+			return await httpClient.delete(resource);
+		} catch (error) {
+			return Promise.reject(error);
+		}
+	},
+
+
 // 	genericErrorHandling(error) {
 // 		let {
 // 			message

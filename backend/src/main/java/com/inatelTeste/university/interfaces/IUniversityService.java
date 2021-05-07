@@ -13,6 +13,6 @@ public interface IUniversityService {
 
     University atualizar(UniversityDTO universityDTO);
 
-    University remover(UniversityDTO universityDTO);
+    University remover(String id);
 
 }
