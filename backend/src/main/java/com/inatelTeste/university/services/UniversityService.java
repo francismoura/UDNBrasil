@@ -19,8 +19,6 @@ import java.util.Optional;
 @Service
 public class UniversityService implements IUniversityService {
 
-    public String URL_API = "http://universities.hipolabs.com/search?country=brazil";
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -36,9 +34,7 @@ public class UniversityService implements IUniversityService {
 
         Predicate predicate = qUniversity.name.containsIgnoreCase(filterParams);
 
-        return filterParams.equals("") ?
-                universityRepository.findAll(pageable) :
-                universityRepository.findAll(predicate, pageable);
+        return universityRepository.findAll(predicate, pageable);
 
     }
 
@@ -53,14 +49,16 @@ public class UniversityService implements IUniversityService {
 
     @Override
     public University atualizar(UniversityDTO universityDTO) {
+        
+
         return null;
     }
 
     @Override
-    public University remover(UniversityDTO universityDTO) {
+    public University remover(String id) {
 
         University university = new University();
-        Optional<University> universityDb = universityRepository.findById(universityDTO.getId());
+        Optional<University> universityDb = universityRepository.findById(id);
 
         if (universityDb.isPresent()) {
             university = universityDb.get();

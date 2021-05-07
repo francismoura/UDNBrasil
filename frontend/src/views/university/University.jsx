@@ -24,9 +24,9 @@ export default function University() {
 
 	const [dataListing, setDataListing] = useState({});
 
-	const remove = async (item) => {
+	const remove = async (id) => {
 		try{
-			const result = await universityService.remove(item)
+			const result = await universityService.remove(id)
 			if (result) {
 				updatePagination(filterParams);
 			}

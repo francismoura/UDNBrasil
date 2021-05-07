@@ -7,6 +7,10 @@ export default function Home() {
 
 	const history = useHistory();
 
+	const startApplication = () => {
+    history.push(`/app/universidades`);
+	}
+
 	return (
 
 		<div className="home">
@@ -18,7 +22,7 @@ export default function Home() {
 				<button
 					type="button"
 					className="btn-external btn btn-primary btn-lg rounded-circle"
-					onClick={ history.push(`/app/universidades`) }>
+					onClick={ startApplication }>
 					{ "Iniciar!"}
 				</button>
 			</div>
