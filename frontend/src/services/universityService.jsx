@@ -8,8 +8,6 @@ const UniversityService = {
 
 	remove: async (university) => apiService.post('/remover', university),
 
-	start: async () => apiService.get('/iniciar'),
-
 	findById: async (idUniversity) => apiService.get('/findById/' + idUniversity),
 
 	list: async (filterParams) => {

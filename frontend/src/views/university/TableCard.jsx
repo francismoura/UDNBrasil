@@ -129,7 +129,6 @@ export default function TableCard(props) {
 						<tbody>
 							{
 								currentPost.map( (university, index) => {
-									console.log(university);
 									return (
 										<tr key={index}>
 											<td university={ university }>
