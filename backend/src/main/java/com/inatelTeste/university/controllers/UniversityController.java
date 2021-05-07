@@ -12,16 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 //@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/api/universidades")
+@RequestMapping(value = "/app/universidades")
 public class UniversityController {
 
     @Autowired
     IUniversityService universityService;
-
-    @GetMapping(value = "/iniciar")
-    public String iniciar() {
-        return universityService.starter();
-    }
 
     @PostMapping(value = "/salvar")
     public University salvar(@RequestBody UniversityDTO universityDTO) {
@@ -48,7 +43,6 @@ public class UniversityController {
         University university = universityService.remover(universityDTO);
 
         return ResponseEntity.ok()
-                .header(String.valueOf(new HttpHeaders()), EnviromentVariables.baseUrlFrontend())
                 .body(university);
 
     }

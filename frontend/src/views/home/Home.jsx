@@ -1,22 +1,11 @@
 import '../../styles/home.scss';
 import 'bootswatch/dist/flatly/bootstrap.css'
 import React from 'react'
-import UniversityService from '../../services/universityService'
 import { useHistory } from 'react-router-dom';
 
 export default function Home() {
 
 	const history = useHistory();
-
-	const startApplication = () => {
-
-		UniversityService.start()
-		.then( result => {
-			if (result.data === "OK") {
-        history.push(`/api/universidades`);
-			}
-		})
-	}
 
 	return (
 
@@ -29,7 +18,7 @@ export default function Home() {
 				<button
 					type="button"
 					className="btn-external btn btn-primary btn-lg rounded-circle"
-					onClick={startApplication}>
+					onClick={ history.push(`/app/universidades`) }>
 					{ "Iniciar!"}
 				</button>
 			</div>

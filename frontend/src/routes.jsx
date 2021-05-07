@@ -11,10 +11,10 @@ function Routes() {
             <Switch>
 
                 <Route exact path="/">
-                    <Redirect to="/api" />
+                    <Redirect to="/app" />
                 </Route>
-                <Route path="/api" exact component={Home} />
-                <Route path="/api/universidades" exact component={University} />
+                <Route path="/app" exact component={Home} />
+                <Route path="/app/universidades" exact component={University} />
 
             </Switch>
 
