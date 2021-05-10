@@ -1,8 +1,17 @@
 (Projeto em andamento!)
 
-# **Teste Inatel: React + Spring Boot + MongoDB**
+# ** React + Spring Boot + MongoDB**
 
 Este é um sistema simples para consulta de API com informações de universidades brasileiras.
+
+O objetivo desse projeto é criar uma API com base na University Domains and Names API  (https://github.com/Hipo/university-domains-list-api), que retorne somente dados das universidades do Brasil.
+Aém disso,no frontend de haver disponibilidade para consultar (listar, paginar, filtrar e exibir detalhes) desta API.
+
+Deverão ser consideradas as seguintes tecnologias;
+
+- Backend desenvolvido em Java;
+- API rodando em Spring Boot;
+- Frontend de consulta à API desenvolvido com framework React;
 
 
 ## **Configuração do Projeto:**
@@ -16,9 +25,7 @@ Verifique a versão do seu Java. Caso não tenha a versão 14, continue a instal
 
 `$ java --version`
 
-Baixe a versão do Java 14 direto no site da Oracle. Atenção! Não é OpenJDK. Fique a vontade para instalar conforme sua maneira. Porém, para prosseguir com as instrução abaixo, você deve baixar a versão binária 'Linux Compressed Archive'
-
-    https://www.oracle.com/br/java/technologies/javase/jdk14-archive-downloads.html
+Baixe a versão do Java 14 direto no site da Oracle. Atenção! Não é OpenJDK. Fique a vontade para instalar conforme sua maneira. Porém, para prosseguir com as instrução abaixo, você deve baixar a versão binária 'Linux Compressed Archive' no seguinte enredeço: https://www.oracle.com/br/java/technologies/javase/jdk14-archive-downloads.html
 
 Navegue até o diretório onde o download foi realizado e execute os comandos:
 
@@ -68,7 +75,9 @@ Siga os comandos abaixo para instalar a versão estável mais recente do MongoDB
 
 `$ sudo systemctl start mongod`
 
-Qualquer erro durante a instalação, você pode consultar o manual para possível correção: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+Qualquer erro durante a instalação, você pode consultar o manual para possíveis correções: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
+Vamos criar o database!
 
 Acessar o  MongoDB
 
@@ -101,7 +110,7 @@ Tudo ok? Agora siga até o diretóro do projeto e acesse a subpasta /backend
 
 Instale as dependências do Maven
 
-`$ mvn install`
+`$ mvn clean install`
 
 Execute o Spring Boot através da IDE de sua preferência ou por linha de comando
 
@@ -111,7 +120,7 @@ Deixe executando!
 
 ### **FRONTEND REACT**
 
-Você vai precisar de uma versão atualizada do Node. Nesse projeto foi utilizado a versão 14.16.0.
+Instale o NodeJs. Nesse projeto foi utilizado a versão 14.16.0.
 
 `$ sudo apt install nodejs`
 
