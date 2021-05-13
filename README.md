@@ -2,16 +2,15 @@
 
 # ** React + Spring Boot + MongoDB**
 
-Este é um sistema simples para consulta de API com informações de universidades brasileiras.
+Aplicação para consultar informações de universidades brasileiras.
 
-O objetivo desse projeto é criar uma API com base na University Domains and Names API  (https://github.com/Hipo/university-domains-list-api), que retorne somente dados das universidades do Brasil.
-Aém disso,no frontend de haver disponibilidade para consultar (listar, paginar, filtrar e exibir detalhes) desta API.
+O objetivo desse projeto é criar uma API com base na University Domains and Names API  (https://github.com/Hipo/university-domains-list-api), que retorne somente dados das universidades do Brasil. Além disso, no frontend deve haver disponibilidade para consultas (listar, paginar, filtrar e exibir detalhes) nesta API.
 
-Deverão ser consideradas as seguintes tecnologias;
+Foram utilizadas as seguintes tecnologias;
 
 - Backend desenvolvido em Java;
 - API rodando em Spring Boot;
-- Frontend de consulta à API desenvolvido com framework React;
+- Frontend de consulta à API desenvolvido com framework ReactJS;
 
 
 ## **Configuração do Projeto:**
