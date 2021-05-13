@@ -1,8 +1,7 @@
 import '../styles/pagination.scss';
-import Pagination from 'react-bootstrap/Pagination'
-import { Row, Col, PageItem } from 'react-bootstrap';
+import { Row, Col, Pagination, PageItem } from 'react-bootstrap';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-// import { useState } from 'react';
+import React from 'react';
 
 export default function PaginationBasic (props) {
 

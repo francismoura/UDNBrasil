@@ -17,8 +17,12 @@ import javax.validation.Valid;
 @RequestMapping(value = "/app/universidades")
 public class UniversityController {
 
+    private final IUniversityService universityService;
+
     @Autowired
-    IUniversityService universityService;
+    public UniversityController(IUniversityService universityService) {
+        this.universityService = universityService;
+    }
 
     @PostMapping(value = "/salvar")
     public University salvar(@RequestBody UniversityDTO universityDTO) {
@@ -29,7 +33,7 @@ public class UniversityController {
     public ResponseEntity<Page<University>> listar(
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "name") String sortBy,
             @RequestParam(defaultValue = "") String filterParams) {
 
         Page<University> universities = universityService.listar(page, size, sortBy, filterParams);

@@ -21,4 +21,4 @@ const UniversityService = {
 
 	};
 
-export default UniversityService
+export default UniversityService;

@@ -1,13 +1,20 @@
 @import './global';
 
-.form-control {
+.form-group {
 
-	&:not(active) {
-		color: black;
+	.form-control {
+
+		&:not(active) {
+			color: black;
+		}
+
+		&:focus {
+			color: black;
+		}
 	}
 
-	&:focus {
-		color: black;
+	.error-message {
+		color: $color-danger !important;
 	}
 }
 

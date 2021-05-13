@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UniversityRepository extends MongoRepository<University, String>, QuerydslPredicateExecutor<University> {
 
+    boolean existsByName(String name);
+
 }
