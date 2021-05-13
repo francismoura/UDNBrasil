@@ -9,8 +9,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 export default function University() {
 
 	const [university] = useState({
-		name: null,
-    state_province: '',
+		name: '',
+    state_province: 'Estados...',
     web_pages: [],
     domains: [],
 	});
@@ -44,6 +44,17 @@ export default function University() {
 		}
 	};
 
+	const save = async (params) => {
+		try {
+			const result = await universityService.save(params);
+			if (result) {
+				updatePagination(filterParams);
+			}
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+
 	useEffect( () => {
 		updatePagination(filterParams);
 	}, [filterParams] );
@@ -60,7 +71,10 @@ export default function University() {
 			<Container>
 				<Row>
 					<Col>
-						<FormCard university={university}/>
+						<FormCard
+							university={university}
+							save={save}
+						/>
 					</Col>
 				</Row>
 				<Row>

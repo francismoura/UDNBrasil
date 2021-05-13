@@ -21,7 +21,8 @@ const HEADER = [{
 	{
 		name: "Ações",
 		value: "delete",
-		width: "auto"
+		width: "auto",
+		align: "center",
 	}
 ];
 
