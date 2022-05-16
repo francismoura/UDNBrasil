@@ -4,7 +4,7 @@
 
 Aplicação para consultar informações de universidades brasileiras.
 
-O objetivo desse projeto é criar uma API com base na University Domains and Names API  (https://github.com/Hipo/university-domains-list-api), que retorne somente dados das universidades do Brasil. Além disso, no frontend deve haver disponibilidade para consultas (listar, paginar, filtrar e exibir detalhes) nesta API.
+O objetivo desse projeto é criar um portal para consultas de dados sobre universidades brasileiras com base em informações fornecidas por um serviço integrado com a University Domains and Names API (https://github.com/Hipo/university-domains-list-api).  Deve ser possivel listar, paginar, filtrar e exibir detalhes das universidades.
 
 Foram utilizadas as seguintes tecnologias;
 
